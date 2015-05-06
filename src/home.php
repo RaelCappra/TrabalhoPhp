@@ -10,7 +10,7 @@ $movimentacoes = Array(
 <html>
 <head>
 	<title>Home</title>
-	<link rel="stylesheet" src="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
 	<table>
