@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.3.5
 -- Dumped by pg_dump version 9.3.5
--- Started on 2015-05-06 14:42:51 BRT
+-- Started on 2015-05-06 14:51:57 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -14,27 +14,8 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- TOC entry 2021 (class 1262 OID 12070)
--- Name: postgres; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'pt_BR.UTF-8' LC_CTYPE = 'pt_BR.UTF-8';
-
-
-ALTER DATABASE postgres OWNER TO postgres;
-
-\connect postgres
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
---
--- TOC entry 2022 (class 1262 OID 12070)
--- Dependencies: 2021
+-- TOC entry 2023 (class 1262 OID 12070)
+-- Dependencies: 2022
 -- Name: postgres; Type: COMMENT; Schema: -; Owner: postgres
 --
 
@@ -50,7 +31,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2025 (class 0 OID 0)
+-- TOC entry 2026 (class 0 OID 0)
 -- Dependencies: 178
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -93,7 +74,7 @@ CREATE SEQUENCE categoria_id_seq
 ALTER TABLE public.categoria_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2026 (class 0 OID 0)
+-- TOC entry 2027 (class 0 OID 0)
 -- Dependencies: 170
 -- Name: categoria_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -113,6 +94,7 @@ CREATE TABLE movimentacao (
     tipo integer NOT NULL,
     data date NOT NULL,
     descricao character varying,
+    usuario integer NOT NULL,
     CONSTRAINT valor_nao_negativo CHECK ((valor >= (0)::double precision))
 );
 
@@ -135,7 +117,7 @@ CREATE SEQUENCE movimentacao_id_seq
 ALTER TABLE public.movimentacao_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2027 (class 0 OID 0)
+-- TOC entry 2028 (class 0 OID 0)
 -- Dependencies: 174
 -- Name: movimentacao_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -172,7 +154,7 @@ CREATE SEQUENCE tipo_id_seq
 ALTER TABLE public.tipo_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2028 (class 0 OID 0)
+-- TOC entry 2029 (class 0 OID 0)
 -- Dependencies: 172
 -- Name: tipo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -210,7 +192,7 @@ CREATE SEQUENCE usuario_id_seq
 ALTER TABLE public.usuario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2029 (class 0 OID 0)
+-- TOC entry 2030 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -251,7 +233,7 @@ ALTER TABLE ONLY usuario ALTER COLUMN id SET DEFAULT nextval('usuario_id_seq'::r
 
 
 --
--- TOC entry 2010 (class 0 OID 16805)
+-- TOC entry 2011 (class 0 OID 16805)
 -- Dependencies: 171
 -- Data for Name: categoria; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -266,7 +248,7 @@ INSERT INTO categoria (id, nome) VALUES (7, 'Aluguel');
 
 
 --
--- TOC entry 2030 (class 0 OID 0)
+-- TOC entry 2031 (class 0 OID 0)
 -- Dependencies: 170
 -- Name: categoria_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -275,7 +257,7 @@ SELECT pg_catalog.setval('categoria_id_seq', 7, true);
 
 
 --
--- TOC entry 2014 (class 0 OID 16827)
+-- TOC entry 2015 (class 0 OID 16827)
 -- Dependencies: 175
 -- Data for Name: movimentacao; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -283,7 +265,7 @@ SELECT pg_catalog.setval('categoria_id_seq', 7, true);
 
 
 --
--- TOC entry 2031 (class 0 OID 0)
+-- TOC entry 2032 (class 0 OID 0)
 -- Dependencies: 174
 -- Name: movimentacao_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -292,7 +274,7 @@ SELECT pg_catalog.setval('movimentacao_id_seq', 1, false);
 
 
 --
--- TOC entry 2012 (class 0 OID 16816)
+-- TOC entry 2013 (class 0 OID 16816)
 -- Dependencies: 173
 -- Data for Name: tipo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -302,7 +284,7 @@ INSERT INTO tipo (id, nome) VALUES (2, 'despesa');
 
 
 --
--- TOC entry 2032 (class 0 OID 0)
+-- TOC entry 2033 (class 0 OID 0)
 -- Dependencies: 172
 -- Name: tipo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -311,7 +293,7 @@ SELECT pg_catalog.setval('tipo_id_seq', 2, true);
 
 
 --
--- TOC entry 2016 (class 0 OID 16849)
+-- TOC entry 2017 (class 0 OID 16849)
 -- Dependencies: 177
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -320,7 +302,7 @@ INSERT INTO usuario (id, username, senha) VALUES (2, 'nome', '1234');
 
 
 --
--- TOC entry 2033 (class 0 OID 0)
+-- TOC entry 2034 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: usuario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -392,7 +374,16 @@ ALTER TABLE ONLY movimentacao
 
 
 --
--- TOC entry 2024 (class 0 OID 0)
+-- TOC entry 1902 (class 2606 OID 16860)
+-- Name: movimentacao_usuario_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY movimentacao
+    ADD CONSTRAINT movimentacao_usuario_fk FOREIGN KEY (usuario) REFERENCES usuario(id);
+
+
+--
+-- TOC entry 2025 (class 0 OID 0)
 -- Dependencies: 5
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -403,7 +394,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-05-06 14:42:52 BRT
+-- Completed on 2015-05-06 14:51:57 BRT
 
 --
 -- PostgreSQL database dump complete
