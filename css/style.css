@@ -1,0 +1,14 @@
+.despesa {
+	font-weight: bold;
+	color: red;
+}
+
+.receita {
+	font-weight: bold;
+	color: green;
+}
+
+div.login {
+	margin-left: auto;
+    margin-right: auto;
+}
