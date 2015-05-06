@@ -1,10 +1,19 @@
 <?php
-$usuario = "foo";
+include '../lib/crud.php';
+$conexao = getConnection();
+$_SESSION['usuario'] = "nome";
+
+$movimentacoes = getListMovimentacao();
+
+/*
 $movimentacoes = Array(
 	Array("100", "bar", "foobar", "parrot", 0),
 	Array("100", "bar", "foobar", "parrot", 1),
 	Array("100", "bar", "foobar", "parrot", 1),
 	);
+*/
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,8 +25,12 @@ $movimentacoes = Array(
 	<table>
 	<?php
 		foreach ($movimentacoes as $mov){
-			$tipo = $mov[4] ? "receita" : "despesa";
-			echo("<tr class=$tipo> <td>$mov[0]</td><td>$mov[1]</td><td>$mov[2]</td><td>$mov[3]</td> </tr>");
+			$tipo = $mov['tipo'] ? "receita" : "despesa";
+			$valor = $mov['valor'];
+			$categoria = $mov['categoria'];
+			$data = $mov['data'];
+			$descricao = $mov['descricao'];
+			echo("<tr class=$tipo> <td>$valor</td><td>$categoria</td><td>$data</td><td>$descricao</td> </tr>");
 		}
 	?>
 	</table>
