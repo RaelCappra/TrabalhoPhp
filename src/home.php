@@ -1,4 +1,5 @@
-<?php
+ <?php
+// TODO(Rael): Limpar esses echo's e html misturado em php e usar includes ao invés disso
 include '../lib/crud.php';
 $conexao = getConnection();
 $_SESSION['usuario'] = "nome";
