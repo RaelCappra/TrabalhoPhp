@@ -1,6 +1,6 @@
-/*body{
-	background-color: red;
-}*/
+body{
+	font-family: arial;
+}
 
 .despesa {
 	font-weight: bold;
@@ -19,4 +19,13 @@ div.login {
 
 table.movimentacoes tr td{
 	border: 2px solid black;
+}
+
+table.movimentacoes th{
+	font-size: 1.1em;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #003399;
+    color: #ffffff;
 }
