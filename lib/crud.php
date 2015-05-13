@@ -100,7 +100,7 @@
 
 	function getListMovimentacaoByMes($username, $mes){
 		if($mes >= 0 and $mes < 12){
-			$sql = "select movimentacao.* from movimentacao join usuario " .
+			$sql = "select movimentacao.*, movimentacao.data < now() as efetivada from movimentacao join usuario " .
 			"on usuario.id = movimentacao.usuario where usuario.username = $1 " .
 			"and extract(month from movimentacao.data) - 1 = $2";	
 			global $conexao;
