@@ -14,15 +14,6 @@ if (!isset($_GET['mes'])){
 	$_GET['mes'] = count($meses) - 1;
 }
 
-/*
-$movimentacoes = Array(
-	Array("100", "bar", "foobar", "parrot", 0),
-	Array("100", "bar", "foobar", "parrot", 1),
-	Array("100", "bar", "foobar", "parrot", 1),
-	);
-*/
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,8 +25,7 @@ $movimentacoes = Array(
 	Mês
 	<form method="GET">
 		<select name="mes" onchange="this.form.submit()">
-		<?php
-			
+<?php
 			for($mes = 0; $mes < count($meses); $mes++){
 				$selected = ($mes == $_GET['mes'] ? "selected" : "");
 				echo(
@@ -44,11 +34,11 @@ $movimentacoes = Array(
 				"</option>"
 			 	);
 			} 
-		?>
+?>
 		</select>
 	</form>
 	<table>
-	<?php
+<?php
 		if(!$movimentacoes){
 			echo "Você não possui movimentações registradas neste mês";
 		} else {
@@ -58,10 +48,11 @@ $movimentacoes = Array(
 				$categoria = $mov['categoria'];
 				$data = $mov['data'];
 				$descricao = $mov['descricao'];
-				echo("<tr class=$tipo> <td>$valor</td><td>$categoria</td><td>$data</td><td>$descricao</td> </tr>");
+				include "movimentacao.php";
+				//echo("<tr class=$tipo> <td>$valor</td><td>$categoria</td><td>$data</td><td>$descricao</td> </tr>");
 			}
 		}
-	?>
+?>
 	</table>
 	<a href="formularioRegistrar.php">Registrar movimentação</a><br>
 	<a href="alterar.php">Alterar movimentação</a><br>
