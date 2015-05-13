@@ -78,10 +78,11 @@
 	}
 
 	function insertMovimentacao($valor, $tipo, $categoria, $data, $descricao, $username){
-		$sql = "insert into cliente (valor, tipo, categoria, data, descricao, username) values (".
+		$id = getIdUsuario($username);
+		$sql = "insert into movimentacao (valor, tipo, categoria, data, descricao, usuario) values (".
 		"$1, $2, $3, $4, $5, $6)";
 		global $conexao;
-		$params = Array($nome, $tipo, $categoria, $data, $descricao, $username);
+		$params = Array($valor, $tipo, $categoria, $data, $descricao, $id[0]['id']);
 		$resultado = pg_query_params($conexao, $sql, $params);
 		if (!$resultado){
 			echo "erro";
@@ -96,6 +97,15 @@
 			 $sql);
 		return pg_fetch_all($resultado);
 	}
+	
+	function getIdUsuario($username){
+		$sql = "select id from usuario where username = $1";	
+		$params = Array($username);
+		global $conexao;
+		$resultado = pg_query_params($conexao, $sql, $params);
+		return pg_fetch_all($resultado);
+	}
+	
 	
 	function getListCategoria(){
 		$sql = "select * from categoria";	

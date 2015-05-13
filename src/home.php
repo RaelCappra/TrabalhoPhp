@@ -1,7 +1,9 @@
  <?php
 // TODO(Rael): Limpar esses echo's e html misturado em php e usar includes ao invés disso
+// TODO(Lucas): Bug no select de movimentações.(no if(!movimentacoes) tem que checar se não teve movimentações no tempo do select)
 include '../lib/crud.php';
 $conexao = getConnection();
+session_start();
 $_SESSION['usuario'] = "nome";
 
 $movimentacoes = getListMovimentacao($_SESSION['usuario']);
@@ -61,7 +63,7 @@ $movimentacoes = Array(
 		}
 	?>
 	</table>
-	<a href="registrar.php">Registrar movimentação</a><br>
+	<a href="formularioRegistrar.php">Registrar movimentação</a><br>
 	<a href="alterar.php">Alterar movimentação</a><br>
 	<a href="excluir.php">Excluir movimentação</a><br>
 	Logout<br>	
