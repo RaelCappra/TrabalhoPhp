@@ -3,7 +3,7 @@
 	include "conexao.php";
 	$conexao = getConnection();
 	if($conexao){
-		echo("Conectado");
+		//echo("Conectado");
 	}else{
 		echo("Nao foi possivel se conectar ao banco");
 	}
