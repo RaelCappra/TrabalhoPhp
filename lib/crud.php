@@ -97,6 +97,15 @@
 		return pg_fetch_all($resultado);
 	}
 	
+	function getListCategoria(){
+		$sql = "select * from categoria";	
+		global $conexao;
+		$resultado = pg_query(
+			$conexao,
+			 $sql);
+		return pg_fetch_all($resultado);
+	}
+	
 	
 	
 
