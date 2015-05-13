@@ -5,7 +5,7 @@ include '../lib/crud.php';
 $conexao = getConnection();
 session_start();
 if(!isset($_SESSION['usuario'])) {
-	header('location: index.html');
+	header('location: index.php');
 }
 
 $meses = Array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
