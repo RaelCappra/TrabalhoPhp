@@ -6,13 +6,15 @@ $conexao = getConnection();
 session_start();
 $_SESSION['usuario'] = "nome";
 
-$movimentacoes = getListMovimentacao($_SESSION['usuario']);
+
 
 $meses = Array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
-				"Julho", "Agost", "Setembro", "Outubro", "Novembro", "Dezembro", "Todos os meses");
+				"Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro", "Todos os meses");
 if (!isset($_GET['mes'])){
 	$_GET['mes'] = count($meses) - 1;
 }
+
+$movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 
 ?>
 <!DOCTYPE html>

@@ -97,6 +97,23 @@
 			 $sql, Array($username));
 		return pg_fetch_all($resultado);
 	}
+
+	function getListMovimentacaoByMes($username, $mes){
+		if($mes >= 0 and $mes < 12){
+			$sql = "select movimentacao.* from movimentacao join usuario " .
+			"on usuario.id = movimentacao.usuario where usuario.username = $1 " .
+			"and extract(month from movimentacao.data) - 1 = $2";	
+			global $conexao;
+			$resultado = pg_query_params(
+				$conexao,
+				 $sql, Array($username, $mes));
+			return pg_fetch_all($resultado);
+		} else {
+			return getListMovimentacao($username);
+		}
+
+		
+	}
 	
 	function getIdUsuario($username){
 		$sql = "select id from usuario where username = $1";	
