@@ -14,8 +14,10 @@
 	$resultado = pg_query_params($conexao, $sql, Array($username));
 	$usuario = pg_fetch_array($resultado);
 	if(!$usuario or $usuario['senha'] != $senha){
+		session_start();
 		session_unset();
-		session_destroy();
+		
+		$_SESSION['login_error'] = '1';
 		header('location:../src/index.php');
 	} else{
 		session_start();
