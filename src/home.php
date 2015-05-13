@@ -4,7 +4,11 @@
 include '../lib/crud.php';
 $conexao = getConnection();
 session_start();
-$_SESSION['usuario'] = "nome";
+if(!isset($_SESSION['usuario']) and !isset($_POST['username'])){
+	header('location: index.html');
+} else if(!isset($_SESSION['usuario'])){
+	$_SESSION['usuario'] = $_POST['username'];
+}
 
 
 
