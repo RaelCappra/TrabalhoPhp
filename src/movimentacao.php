@@ -5,7 +5,7 @@
 	<td><?=$descricao?></td> 
 	<td><?=$efetivada?></td> 
 	<td><a href=
-	<?="editar.php?movimentacao=$id"?>
+	<?="formularioAlterar.php?movimentacao=$id"?>
 	>Editar</a></td> 
 	<td><a href=<?="excluir.php?movimentacao=$id"?>>Excluir</a></td> 
 </tr>

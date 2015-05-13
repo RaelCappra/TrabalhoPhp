@@ -1,4 +1,5 @@
 <?php
+//TODO(Rael): Validacao
 	session_start();
 	include '../lib/crud.php';
 	$valor = $_POST['valor'];

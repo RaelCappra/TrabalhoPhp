@@ -1,5 +1,6 @@
  <?php
 // TODO(Rael): Limpar esses echo's e html misturado em php e usar includes ao invés disso
+//TODO(Rael): Corriger mes de varios anos (??)
 // TODO(Lucas): Bug no select de movimentações.(no if(!movimentacoes) tem que checar se não teve movimentações no tempo do select)
 date_default_timezone_set('America/Sao_Paulo');
 include '../lib/crud.php';
