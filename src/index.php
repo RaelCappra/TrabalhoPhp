@@ -18,7 +18,7 @@ session_start();
 <?php
 	}
 ?>
-	<form method = "POST" action = "../lib/login.php">
+	<form method = "POST" action = "login.php">
 		Login: <input type = "text" name = "username" id = "username">
 		<br>
 		Senha: <input type = "password" name = "senha" id = "senha">

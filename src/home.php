@@ -66,7 +66,7 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 	<a href="formularioRegistrar.php">Registrar movimentação</a><br>
 	<a href="alterar.php">Alterar movimentação</a><br>
 	<a href="formularioExcluir.php">Excluir movimentação</a><br>
-	<a href='../lib/logout.php'>Logout</a><br>	
+	<a href='logout.php'>Logout</a><br>	
 </body>
 </html>
 
