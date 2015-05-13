@@ -1,6 +1,7 @@
  <?php
 // TODO(Rael): Limpar esses echo's e html misturado em php e usar includes ao invés disso
 // TODO(Lucas): Bug no select de movimentações.(no if(!movimentacoes) tem que checar se não teve movimentações no tempo do select)
+date_default_timezone_set('America/Sao_Paulo');
 include '../lib/crud.php';
 $conexao = getConnection();
 session_start();
@@ -33,7 +34,7 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 				echo(
 				"<option value=\"$mes\" " . $selected . ">". 
 				$meses[$mes] .			
-				"</option>"
+				"</option>"	
 			 	);
 			} 
 ?>
@@ -45,18 +46,22 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 			<th>Categoria</th>
 			<th>Data</th>
 			<th>Descricao</th>
+			<th>Efetivada</th>
 		</tr>
 <?php
 		if(!$movimentacoes){
 			echo "Você não possui movimentações registradas neste mês";
 		} else {
 			foreach ($movimentacoes as $mov){
+				//TODO(Rael):Buscar o nome do tipo, e nao simplesmente o id
 				$tipo = $mov['tipo'] == 1 ? "receita" : "despesa";
 				$valor = $mov['valor'];
 				//TODO(Rael):Buscar o nome da categoria, e nao simplesmente o id
 				$categoria = $mov['categoria'];
 				$data = $mov['data'];
 				$descricao = $mov['descricao'];
+				//TODO(Rael):Fazer o teste da mov. efetivada no sql
+				$efetivada = "TODO";//$mov['data'] > getdate() ? "Não" : "Sim";
 				include "movimentacao.php";
 				//echo("<tr class=$tipo> <td>$valor</td><td>$categoria</td><td>$data</td><td>$descricao</td> </tr>");
 			}
