@@ -77,25 +77,28 @@
 		}
 	}
 
-	function insertMovimentacao($valor, $tipo, $categoria, $data, $descricao){
-		$sql = "insert into cliente (valor, tipo, categoria, data, descricao) values (".
-		"$1, $2, $3, $4, $5)";
+	function insertMovimentacao($valor, $tipo, $categoria, $data, $descricao, $username){
+		$sql = "insert into cliente (valor, tipo, categoria, data, descricao, username) values (".
+		"$1, $2, $3, $4, $5, $6)";
 		global $conexao;
-		$params = Array($nome, $tipo, $categoria, $data, $descricao);
+		$params = Array($nome, $tipo, $categoria, $data, $descricao, $username);
 		$resultado = pg_query_params($conexao, $sql, $params);
 		if (!$resultado){
 			echo "erro";
 		}
 	}
 
-	function getListMovimentacao(){
-		$sql = "select * from movimentacao";	
+	function getListMovimentacao($username){
+		$sql = "select movimentacao.* from movimentacao join usuario on usuario.id = movimentacao.usuario where usuario.username = '$username'";	
 		global $conexao;
 		$resultado = pg_query(
 			$conexao,
 			 $sql);
 		return pg_fetch_all($resultado);
 	}
+	
+	
+	
 
 	function getIdCategoria($nomeCategoria){
 		$sql = "select id from categoria where nome = $nomeCategoria";

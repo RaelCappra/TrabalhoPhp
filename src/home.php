@@ -4,7 +4,7 @@ include '../lib/crud.php';
 $conexao = getConnection();
 $_SESSION['usuario'] = "nome";
 
-$movimentacoes = getListMovimentacao();
+$movimentacoes = getListMovimentacao($_SESSION['usuario']);
 
 $meses = Array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
 				"Julho", "Agost", "Setembro", "Outubro", "Novembro", "Dezembro", "Todos os meses");
@@ -61,6 +61,10 @@ $movimentacoes = Array(
 		}
 	?>
 	</table>
+	<a href="registrar.php">Registrar movimentação</a><br>
+	<a href="alterar.php">Alterar movimentação</a><br>
+	<a href="excluir.php">Excluir movimentação</a><br>
+	Logout<br>	
 </body>
 </html>
 
