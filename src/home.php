@@ -52,6 +52,8 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 		if(!$movimentacoes){
 			echo "Você não possui movimentações registradas neste mês";
 		} else {
+			$total = 0;
+			$total_previsto = 0;
 			foreach ($movimentacoes as $mov){
 				//TODO(Rael):Buscar o nome do tipo, e nao simplesmente o id
 				$tipo = $mov['tipo'] == 1 ? "receita" : "despesa";
@@ -60,13 +62,24 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 				$categoria = $mov['categoria'];
 				$data = $mov['data'];
 				$descricao = $mov['descricao'];
-				//TODO(Rael):Fazer o teste da mov. efetivada no sql
-				$efetivada = "TODO";//$mov['data'] > getdate() ? "Não" : "Sim";
+				$efetivada = $mov['efetivada'] == 't' ? "Sim" : "Não";//$mov['data'] > getdate() ? "Não" : "Sim";
+
+				if($tipo == "receita"){
+					$total += $mov['valor'];
+				} else if ($tipo == "despesa"){
+					$total -= $mov['valor'];
+				}
+				//TODO(Rael):fazer o total_previsto quando estiver resolvido o problema das efetivadas
 				include "movimentacao.php";
 				//echo("<tr class=$tipo> <td>$valor</td><td>$categoria</td><td>$data</td><td>$descricao</td> </tr>");
 			}
 		}
+
 ?>
+	<tr>
+		<td colspan="3">Total: <?=$total?></td>
+		<td colspan="4">Total previsto: <?=$total_previsto?></td>
+	</tr>
 	</table>
 	<a href="formularioRegistrar.php">Registrar movimentação</a><br>
 	<a href="alterar.php">Alterar movimentação</a><br>

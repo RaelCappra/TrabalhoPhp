@@ -90,7 +90,7 @@
 	}
 
 	function getListMovimentacao($username){
-		$sql = "select movimentacao.* from movimentacao join usuario on usuario.id = movimentacao.usuario where usuario.username = $1";	
+		$sql = "select movimentacao.*, movimentacao.data < now() as efetivada from movimentacao join usuario on usuario.id = movimentacao.usuario where usuario.username = $1";	
 		global $conexao;
 		$resultado = pg_query_params(
 			$conexao,
