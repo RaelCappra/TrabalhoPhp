@@ -1,6 +1,4 @@
  <?php
-// TODO(Rael): Limpar esses echo's e html misturado em php e usar includes ao invés disso
-//TODO(Rael): Corriger mes de varios anos (??)
 // TODO(Lucas): Bug no select de movimentações.(no if(!movimentacoes) tem que checar se não teve movimentações no tempo do select)
 date_default_timezone_set('America/Sao_Paulo');
 include '../lib/crud.php';
@@ -26,17 +24,18 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
+	Olá, <?=$_SESSION['usuario']?><br>
 	Mês
 	<form method="GET">
 		<select name="mes" onchange="this.form.submit()">
 <?php
 			for($mes = 0; $mes < count($meses); $mes++){
 				$selected = ($mes == $_GET['mes'] ? "selected" : "");
-				echo(
-				"<option value=\"$mes\" " . $selected . ">". 
-				$meses[$mes] .			
-				"</option>"	
-			 	);
+?>
+				<option value=<?=$mes?> <?=$selected?>>
+				<?=$meses[$mes]?>
+				</option>option> 
+<?php
 			} 
 ?>
 		</select>
@@ -52,7 +51,7 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 			<th>Excluir</th>
 		</tr>
 <?php
-		if(!$movimentacoes){
+		if(!$movimentacoes or empty($movimentacoes)){
 			echo "Você não possui movimentações registradas neste mês";
 		} else {
 			$total = 0;
@@ -95,7 +94,6 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 	</tr>
 	</table>
 	<a href="formularioRegistrar.php">Registrar movimentação</a><br>
-	<a href="alterar.php">Alterar movimentação</a><br>
 	<a href='logout.php'>Logout</a><br>	
 </body>
 </html>

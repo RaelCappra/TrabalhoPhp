@@ -36,7 +36,6 @@
 		$comando = "update movimentacao set tipo = '".$tipo."' where id = ".$id;
 		global $conexao;
 		if($resultado = pg_query($conexao, $comando)){
-			echo "Tipo alterado";
 			
 		}else{
 			echo "Erro ao alterar o tipo";			
@@ -47,7 +46,6 @@
 		$comando = "update movimentacao set categoria = '".$categoria."' where id = ".$id;
 		global $conexao;
 		if($resultado = pg_query($conexao, $comando)){
-			echo "Categoria alterada";
 			
 		}else{
 			echo "Erro ao alterar categoria";			
@@ -58,7 +56,6 @@
 		$comando = "update movimentacao set valor = '".$valor."' where id = ".$id;
 		global $conexao;
 		if($resultado = pg_query($conexao, $comando)){
-			echo "Valor alterado";
 			
 		}else{
 			echo "Erro ao alterar o valor";			
@@ -69,7 +66,6 @@
 		$comando = "update movimentacao set data = '".$data."' where id = ".$id;
 		global $conexao;
 		if($resultado = pg_query($conexao, $comando)){
-			echo "Data alterada";
 			
 		}else{
 			echo "Erro ao alterar a data";			
@@ -80,7 +76,6 @@
 		$comando = "update movimentacao set descricao = '".$descricao."' where id = ".$id;
 		global $conexao;
 		if($resultado = pg_query($conexao, $comando)){
-			echo "Descricao alterada";
 			
 		}else{
 			echo "Erro ao alterar a descricao";			
