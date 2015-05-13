@@ -65,7 +65,7 @@ $movimentacoes = Array(
 	</table>
 	<a href="formularioRegistrar.php">Registrar movimentação</a><br>
 	<a href="alterar.php">Alterar movimentação</a><br>
-	<a href="excluir.php">Excluir movimentação</a><br>
+	<a href="formularioExcluir.php">Excluir movimentação</a><br>
 	Logout<br>	
 </body>
 </html>
