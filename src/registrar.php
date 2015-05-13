@@ -8,7 +8,7 @@
 	$descricao = $_POST['descricao'];
 	
 	insertMovimentacao($valor, $tipo, $categoria, $data, $descricao, $_SESSION['usuario']);
-	
+	header('location:home.php');
 
 	
 ?>
