@@ -16,7 +16,7 @@
 	if(!$usuario or $usuario['senha'] != $senha){
 		session_unset();
 		session_destroy();
-		header('location:../src/index.html');
+		header('location:../src/index.php');
 	} else{
 		session_start();
 		$_SESSION['usuario'] = $username;
