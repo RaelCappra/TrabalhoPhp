@@ -39,14 +39,21 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 ?>
 		</select>
 	</form>
-	<table>
+	<table class='movimentacoes' cellpadding="0" cellspacing="1">
+		<tr>
+			<th>Valor</th>
+			<th>Categoria</th>
+			<th>Data</th>
+			<th>Descricao</th>
+		</tr>
 <?php
 		if(!$movimentacoes){
 			echo "Você não possui movimentações registradas neste mês";
 		} else {
 			foreach ($movimentacoes as $mov){
-				$tipo = $mov['tipo'] ? "receita" : "despesa";
+				$tipo = $mov['tipo'] == 1 ? "receita" : "despesa";
 				$valor = $mov['valor'];
+				//TODO(Rael):Buscar o nome da categoria, e nao simplesmente o id
 				$categoria = $mov['categoria'];
 				$data = $mov['data'];
 				$descricao = $mov['descricao'];
@@ -59,6 +66,7 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 	<a href="formularioRegistrar.php">Registrar movimentação</a><br>
 	<a href="alterar.php">Alterar movimentação</a><br>
 	<a href="formularioExcluir.php">Excluir movimentação</a><br>
+<!--TODO(Rael): fazer um logout de verdade quando tivermos sessoes-->
 	Logout<br>	
 </body>
 </html>
