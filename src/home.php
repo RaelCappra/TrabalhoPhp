@@ -1,5 +1,4 @@
  <?php
-// TODO(Lucas): Bug no select de movimentações.(no if(!movimentacoes) tem que checar se não teve movimentações no tempo do select)
 date_default_timezone_set('America/Sao_Paulo');
 include '../lib/crud.php';
 $conexao = getConnection();
@@ -58,22 +57,19 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 			$total_previsto = 0;
 			foreach ($movimentacoes as $mov){
 				$id = $mov['id'];
-				//TODO(Rael):Buscar o nome do tipo, e nao simplesmente o id
 				$tipo = $mov['tipo'] == 1 ? "receita" : "despesa";
 				$valor = $mov['valor'];
-				//TODO(Rael):Buscar o nome da categoria, e nao simplesmente o id
-				$categoria = $mov['categoria'];
+				$categoria = $mov['nome_categoria'];
 				$data = $mov['data'];
 				$descricao = $mov['descricao'];
-				$efetivada = $mov['efetivada'] == 't' ? "Sim" : "Não";//$mov['data'] > getdate() ? "Não" : "Sim";
-
+				$efetivada = $mov['efetivada'] == 't' ? "Sim" : "Não";
 				if($tipo == "receita"){
 					$total_previsto += $mov['valor'];
 					if($efetivada == "Sim"){
 						$total += $mov['valor'];
 					}
 				} else if ($tipo == "despesa"){
-					$total_previsto += $mov['valor'];
+					$total_previsto -= $mov['valor'];
 					if($efetivada == "Sim"){
 						$total -= $mov['valor'];
 					}
