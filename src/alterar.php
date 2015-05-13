@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include '../lib/crud.php';
+	include '../lib/valida.php';
 	$id = $_POST['movimentacao'];
 	if (!$id){
 		header('location:index.php');
@@ -12,6 +13,11 @@
 		$data = $_POST['data'];
 		$descricao = $_POST['descricao'];
 		$valor = $_POST['valor'];
+
+		if (!valida($valor, $categoria)){
+			echo "Erro: formulario invalido";
+			die();
+		}
 
 		alteraMovimentacaoTipo($tipo, $id);
 		alteraMovimentacaoCategoria($categoria, $id);
