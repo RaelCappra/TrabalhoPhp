@@ -8,7 +8,17 @@
 		echo("Nao foi possivel se conectar ao banco");
 	}
 
+	function getMovimentacaoById($id){
+		$sql = "select movimentacao.* from movimentacao where id = $1";
+		global $conexao;
+		if($resultado = pg_query_params($conexao, $sql, Array($id))){
+			return pg_fetch_array($resultado);
+		}else{
+			echo "Erro: Movimentacao nao foi deletado";			
+			die();
+		}
 
+	}
 
 	function deleteMovimentacao($id){
 		$comando = "delete from movimentacao where id = ".$id;

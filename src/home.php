@@ -47,6 +47,8 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 			<th>Data</th>
 			<th>Descricao</th>
 			<th>Efetivada</th>
+			<th>Editar</th>
+			<th>Excluir</th>
 		</tr>
 <?php
 		if(!$movimentacoes){
@@ -55,6 +57,7 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 			$total = 0;
 			$total_previsto = 0;
 			foreach ($movimentacoes as $mov){
+				$id = $mov['id'];
 				//TODO(Rael):Buscar o nome do tipo, e nao simplesmente o id
 				$tipo = $mov['tipo'] == 1 ? "receita" : "despesa";
 				$valor = $mov['valor'];
@@ -65,25 +68,33 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 				$efetivada = $mov['efetivada'] == 't' ? "Sim" : "Não";//$mov['data'] > getdate() ? "Não" : "Sim";
 
 				if($tipo == "receita"){
-					$total += $mov['valor'];
+					$total_previsto += $mov['valor'];
+					if($efetivada == "Sim"){
+						$total += $mov['valor'];
+					}
 				} else if ($tipo == "despesa"){
-					$total -= $mov['valor'];
+					$total_previsto += $mov['valor'];
+					if($efetivada == "Sim"){
+						$total -= $mov['valor'];
+					}
 				}
-				//TODO(Rael):fazer o total_previsto quando estiver resolvido o problema das efetivadas
+				
 				include "movimentacao.php";
 				//echo("<tr class=$tipo> <td>$valor</td><td>$categoria</td><td>$data</td><td>$descricao</td> </tr>");
 			}
-		}
+		
 
 ?>
 	<tr>
 		<td colspan="3">Total: <?=$total?></td>
 		<td colspan="4">Total previsto: <?=$total_previsto?></td>
+<?php
+		}
+?>
 	</tr>
 	</table>
 	<a href="formularioRegistrar.php">Registrar movimentação</a><br>
 	<a href="alterar.php">Alterar movimentação</a><br>
-	<a href="formularioExcluir.php">Excluir movimentação</a><br>
 	<a href='logout.php'>Logout</a><br>	
 </body>
 </html>
