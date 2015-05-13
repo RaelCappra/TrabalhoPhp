@@ -4,13 +4,9 @@
 include '../lib/crud.php';
 $conexao = getConnection();
 session_start();
-if(!isset($_SESSION['usuario']) and !isset($_POST['username'])){
+if(!isset($_SESSION['usuario'])) {
 	header('location: index.html');
-} else if(!isset($_SESSION['usuario'])){
-	$_SESSION['usuario'] = $_POST['username'];
 }
-
-
 
 $meses = Array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
 				"Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro", "Todos os meses");

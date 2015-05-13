@@ -12,13 +12,14 @@
 
 	$sql = "select * from usuario where username = $1";
 	$resultado = pg_query_params($conexao, $sql, Array($username));
-	$usuario = pg_fetch_row($resultado);
-	if(!$usuario){
-		//Usuario nao existe
-	} else if($usuario['senha'] == $senha){
-		//Senha incorreta
+	$usuario = pg_fetch_array($resultado);
+	if(!$usuario or $usuario['senha'] != $senha){
+		session_unset();
+		session_destroy();
+		header('location:../src/index.html');
 	} else{
 		session_start();
 		$_SESSION['usuario'] = $username;
+		header('location:../src/home.php');
 	}
 ?>
