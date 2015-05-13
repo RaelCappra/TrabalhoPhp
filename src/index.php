@@ -1,8 +1,7 @@
 <?php
+session_start();
 	if(isset($_SESSION['usuario'])){
 		header('location: home.php');
-	} else{
-		session_start();
 	}
 ?>
 
@@ -13,7 +12,7 @@
 </head>
 <body>
 <?php
-	if(isset($_SESSION['login_error'])){
+	if(isset($_SESSION['login_error']) and $_SESSION['login_error'] > 0){
 ?>
 		Erro: nome de usuário ou senha incorretos
 <?php

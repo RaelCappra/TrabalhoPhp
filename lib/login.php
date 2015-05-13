@@ -17,10 +17,11 @@
 		session_start();
 		session_unset();
 		
-		$_SESSION['login_error'] = '1';
+		$_SESSION['login_error'] = 1;
 		header('location:../src/index.php');
 	} else{
 		session_start();
+		$_SESSION['login_error'] = 0;
 		$_SESSION['usuario'] = $username;
 		header('location:../src/home.php');
 	}

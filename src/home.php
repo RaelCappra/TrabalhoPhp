@@ -66,8 +66,7 @@ $movimentacoes = getListMovimentacaoByMes($_SESSION['usuario'], $_GET['mes']);
 	<a href="formularioRegistrar.php">Registrar movimentação</a><br>
 	<a href="alterar.php">Alterar movimentação</a><br>
 	<a href="formularioExcluir.php">Excluir movimentação</a><br>
-<!--TODO(Rael): fazer um logout de verdade quando tivermos sessoes-->
-	Logout<br>	
+	<a href='../lib/logout.php'>Logout</a><br>	
 </body>
 </html>
 
